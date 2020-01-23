@@ -1,0 +1,1 @@
+docker run -it --rm -e DISPLAY=192.168.2.106:0.0 -v /c/Users/kodama/Documents/docker/ros/osrf_melodic:/root/ros/osrf_melodic -w /root/ros/osrf_melodic osrf_melodic bash

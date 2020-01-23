@@ -1,0 +1,29 @@
+FROM osrf/ros:melodic-desktop-full-bionic
+
+RUN apt update
+RUN apt upgrade -y
+RUN apt install wget -y
+RUN apt install liburdfdom-tools -y
+
+RUN apt install -y terminator
+RUN apt install dbus-x11 -y
+RUN mkdir -p /root/.config/terminator
+RUN touch /root/.config/terminator/config
+ 
+RUN apt install ros-melodic-cob-gazebo-worlds -y
+RUN apt install ros-melodic-hector-gazebo-worlds -y
+RUN apt install ros-melodic-uuv-gazebo-worlds -y
+ 
+RUN apt install ros-melodic-turtlebot3-gazebo -y
+RUN apt install ros-melodic-turtlebot3-teleop -y
+#RUN apt install ros-melodic-turtlebot3-rviz-launchers
+ 
+RUN apt install ros-melodic-joy ros-melodic-teleop-twist-joy ros-melodic-teleop-twist-keyboard ros-melodic-laser-proc ros-melodic-rgbd-launch ros-melodic-depthimage-to-laserscan ros-melodic-rosserial-arduino ros-melodic-rosserial-python ros-melodic-rosserial-server ros-melodic-rosserial-client ros-melodic-rosserial-msgs ros-melodic-amcl ros-melodic-map-server ros-melodic-move-base ros-melodic-urdf ros-melodic-xacro ros-melodic-compressed-image-transport ros-melodic-rqt-image-view ros-melodic-navigation -y
+ 
+RUN echo 'source /opt/ros/melodic/setup.bash' >> ~/.bashrc
+RUN echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
+ 
+ENV TURTLEBOT3_MODEL burger
+ 
+RUN echo 'source ~/ros/osrf_melodic/pkgs/catkin_ws2/devel/setup.bash' >> ~/.bashrc
+
