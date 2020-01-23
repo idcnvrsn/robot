@@ -16,7 +16,6 @@ RUN apt install ros-melodic-uuv-gazebo-worlds -y
  
 RUN apt install ros-melodic-turtlebot3-gazebo -y
 RUN apt install ros-melodic-turtlebot3-teleop -y
-#RUN apt install ros-melodic-turtlebot3-rviz-launchers
  
 RUN apt install ros-melodic-joy ros-melodic-teleop-twist-joy ros-melodic-teleop-twist-keyboard ros-melodic-laser-proc ros-melodic-rgbd-launch ros-melodic-depthimage-to-laserscan ros-melodic-rosserial-arduino ros-melodic-rosserial-python ros-melodic-rosserial-server ros-melodic-rosserial-client ros-melodic-rosserial-msgs ros-melodic-amcl ros-melodic-map-server ros-melodic-move-base ros-melodic-urdf ros-melodic-xacro ros-melodic-compressed-image-transport ros-melodic-rqt-image-view ros-melodic-navigation -y
  
@@ -24,6 +23,21 @@ RUN echo 'source /opt/ros/melodic/setup.bash' >> ~/.bashrc
 RUN echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
  
 ENV TURTLEBOT3_MODEL burger
- 
+
 RUN echo 'source ~/ros/osrf_melodic/pkgs/catkin_ws2/devel/setup.bash' >> ~/.bashrc
+
+# setup gmapping
+RUN /bin/bash -c 'mkdir -p ~/pkgs/catkin_ws3/src && \
+cd ~/pkgs/catkin_ws3/src && \
+source /opt/ros/melodic/setup.bash && \
+catkin_init_workspace  && \
+git clone https://github.com/ros-perception/openslam_gmapping.git && \
+git clone https://github.com/ros-perception/slam_gmapping.git && \
+git clone https://github.com/ros-planning/navigation_msgs.git && \
+git clone https://github.com/ros-planning/navigation.git && \
+git clone https://github.com/ros/geometry2.git && \
+cd ~/pkgs/catkin_ws3  && \
+catkin_make'
+
+RUN echo 'source ~/pkgs/catkin_ws3/devel/setup.bash' >> ~/.bashrc
 
