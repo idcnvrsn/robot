@@ -41,3 +41,26 @@ catkin_make'
 
 RUN echo 'source ~/pkgs/catkin_ws3/devel/setup.bash' >> ~/.bashrc
 
+# setup cartographer
+RUN apt-get install -y python-wstool python-rosdep ninja-build
+
+RUN /bin/bash -c 'mkdir ~/pkgs/catkin_cg && \
+cd ~/pkgs/catkin_cg && \
+wstool init src && \
+wstool merge -t src https://raw.githubusercontent.com/googlecartographer/cartographer_ros/master/cartographer_ros.rosinstall && \
+wstool update -t src'
+RUN /bin/bash -c '~/pkgs/catkin_cg/src/cartographer/scripts/install_proto3.sh'
+RUN rm /etc/ros/rosdep/sources.list.d/20-default.list
+RUN /bin/bash -c 'cd ~/pkgs/catkin_cg && \
+rosdep init && \
+rosdep update && \
+rosdep install --from-paths src --ignore-src --rosdistro=melodic -y'
+RUN /bin/bash -c 'source /opt/ros/melodic/setup.bash && \
+cd ~/pkgs/catkin_cg && \
+catkin_make_isolated --install --use-ninja'
+
+RUN /bin/bash -c 'cd ~/pkgs/catkin_cg && \
+source install_isolated/setup.bash'
+
+RUN mkdir ~/Downloads
+RUN wget -P ~/Downloads https://storage.googleapis.com/cartographer-public-data/bags/backpack_2d/cartographer_paper_deutsches_museum.bag
