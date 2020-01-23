@@ -59,8 +59,7 @@ RUN /bin/bash -c 'source /opt/ros/melodic/setup.bash && \
 cd ~/pkgs/catkin_cg && \
 catkin_make_isolated --install --use-ninja'
 
-RUN /bin/bash -c 'cd ~/pkgs/catkin_cg && \
-source install_isolated/setup.bash'
-
 RUN mkdir ~/Downloads
 RUN wget -P ~/Downloads https://storage.googleapis.com/cartographer-public-data/bags/backpack_2d/cartographer_paper_deutsches_museum.bag
+
+RUN echo 'source ~/pkgs/catkin_cg/install_isolated/setup.bash' >> ~/.bashrc
