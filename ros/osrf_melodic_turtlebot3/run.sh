@@ -1,0 +1,1 @@
+docker run -it --rm -e DISPLAY=$1:0.0 -v $PWD:/root/ros/osrf_melodic -w /root/ros/osrf_melodic osrf_melodic_turtlebot3 bash
