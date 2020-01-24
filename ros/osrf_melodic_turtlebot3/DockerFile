@@ -34,6 +34,13 @@ git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git && \
 git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git && \
 git clone https://github.com/ROBOTIS-GIT/turtlebot3_gazebo_plugin.git'
 
+RUN /bin/bash -c 'cd ~/catkin_ws/src && \
+git clone https://github.com/ros-perception/slam_gmapping.git && \
+git clone https://github.com/ros-perception/openslam_gmapping.git && \
+git clone https://github.com/ros-planning/navigation_msgs.git && \
+git clone https://github.com/ros-planning/navigation.git && \
+git clone https://github.com/ros/geometry2.git'
+
 RUN /bin/bash -c 'cd ~/catkin_ws && \
 source /opt/ros/melodic/setup.bash && \
 catkin_make'
