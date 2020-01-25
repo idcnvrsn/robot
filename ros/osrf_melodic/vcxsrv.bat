@@ -1,1 +1,0 @@
-"C:\Program Files\VcXsrv\vcxsrv.exe" -ac -multiwindow -nowgl 
