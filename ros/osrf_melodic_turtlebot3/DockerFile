@@ -49,3 +49,5 @@ ENV TURTLEBOT3_MODEL burger
 
 RUN echo 'source ~/catkin_ws/devel/setup.bash' >> ~/.bashrc
 
+RUN apt install nano
+
