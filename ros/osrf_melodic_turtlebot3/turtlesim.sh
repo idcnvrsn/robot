@@ -20,3 +20,5 @@ echo 'rostopic type /turtle1/pose | rosmsg show:'
 rostopic type /turtle1/pose | rosmsg show
 echo 'rosservice list:'
 rosservice list
+echo 'rostopic  info /turtle1/cmd_vel:'
+rostopic  info /turtle1/cmd_vel
